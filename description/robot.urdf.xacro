@@ -42,108 +42,121 @@
         </visual>
     </link>
 
-    <joint name="junta_elodabase_end_effector" type="fixed">
+    <joint name="elobase_rotaçao" type="revolute">
         <parent link="base_link" />
         <child link="elodabase" />
-        <origin xyz="0 0 0.5" /> 
-    </joint>
-
-    <link name="elo1">
-        <visual>
-            <origin xyz="-0.125 0 0.4"/> 
-            <geometry>
-                <box size="0.1 0.1 0.85"/>  
-            </geometry>
-            <material name="elo1"/>
-        </visual>
-    </link>
-
-    <joint name="junta_elo1" type="revolute">
-        <parent link="elodabase" />
-        <child link="elo1" />
-        <origin xyz="0 0 1" /> 
-        <axis xyz="1 0 0" />
-        <limit lower="-1.580" upper="1.580" effort="100" velocity="3.0" />
-        <transmission name="junta1_trans">
+        <origin xyz="0 0 0.5" />
+        <axis xyz="0 1 0" />  
+        <limit lower="-0.900" upper="0.900" effort="100" velocity="3.0" />  
+        <dynamics damping="0.0" friction="0.0" />  
+        <transmission name="junta_elodabase_trans">
             <type>SimpleTransmission</type>
-            <actuator name="junta1_motor">
+            <actuator name="junta_elodabase_motor">
                 <mechanicalReduction>1</mechanicalReduction>
             </actuator>
-            <joint name="junta1">
+            <joint name="junta_elodabase">
                 <hardwareInterface>PositionJointInterface</hardwareInterface>
             </joint>
         </transmission>
     </joint>
 
-    <link name="elo2">
-        <visual>
-            <origin xyz="-0.216 0 0.40"/> 
-            <geometry>
-                <box size="0.08 0.08 1.0"/>  
-            </geometry>
-            <material name="elo2"/>
-        </visual>
-    </link>
+<link name="elo1">
+    <visual>
+        <origin xyz="-0.125 0 0.4"/> 
+        <geometry>
+            <box size="0.1 0.1 0.85"/>  
+        </geometry>
+        <material name="elo1"/>
+    </visual>
+</link>
 
-    <joint name="junta_elo2" type="revolute">
-        <parent link="elo1" />
-        <child link="elo2" />
-        <origin xyz="0 0 0.8" /> 
-        <axis xyz="1 0 0" /> 
-        <limit lower="-2.700" upper="2.700" effort="100" velocity="3.0" />
-        <transmission name="junta2_trans">
-            <type>SimpleTransmission</type>
-            <actuator name="junta2_motor">
-                <mechanicalReduction>1</mechanicalReduction>
-            </actuator>
-            <joint name="junta2">
-                <hardwareInterface>PositionJointInterface</hardwareInterface>
-            </joint>
-        </transmission>
-    </joint>
+<joint name="junta_elo1" type="revolute">
+    <parent link="elodabase" />
+    <child link="elo1" />
+    <origin xyz="0 0 1" /> 
+    <axis xyz="1 0 0" />
+    <limit lower="-1.580" upper="1.580" effort="100" velocity="3.0" />
+    <transmission name="junta1_trans">
+        <type>SimpleTransmission</type>
+        <actuator name="junta1_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="junta1">
+            <hardwareInterface>PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+</joint>
 
-    <link name="junta2">
-        <visual>
-            <origin xyz="0 0 0"/> 
-            <geometry>
-                <box size="0.05 0.05 0.05"/>  
-            </geometry>
-        </visual>
-    </link>
+<link name="elo2">
+    <visual>
+        <origin xyz="-0.216 0 0.40"/> 
+        <geometry>
+            <box size="0.08 0.08 1.0"/>  
+        </geometry>
+        <material name="elo2"/>
+    </visual>
+</link>
 
-    <joint name="junta_junta2" type="fixed">
-        <parent link="elo2" />
-        <child link="junta2" />
-        <origin xyz="-0.18 0 0" /> 
-    </joint>
+<joint name="junta_elo2" type="revolute">
+    <parent link="elo1" />
+    <child link="elo2" />
+    <origin xyz="0 0 0.8" /> 
+    <axis xyz="1 0 0" /> 
+    <limit lower="-2.700" upper="2.700" effort="100" velocity="3.0" />
+    <transmission name="junta2_trans">
+        <type>SimpleTransmission</type>
+        <actuator name="junta2_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="junta2">
+            <hardwareInterface>PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+</joint>
 
-    <link name="visor">
-        <visual>
-            <origin xyz="0 0 0"/> 
-            <geometry>
-                <box size="0.05 0.05 0.05"/>  
-            </geometry>
-        </visual>
-    </link>
+<link name="junta2">
+    <visual>
+        <origin xyz="0 0 0"/> 
+        <geometry>
+            <box size="0.05 0.05 0.05"/>  
+        </geometry>
+    </visual>
+</link>
 
-    <link name="junta1">
-        <visual>
-            <origin xyz="0 0 0"/> 
-            <geometry>
-                <box size="0.05 0.05 0.05"/>  
-            </geometry>
-        </visual>
-    </link>
+<joint name="junta_junta2" type="fixed">
+    <parent link="elo2" />
+    <child link="junta2" />
+    <origin xyz="-0.18 0 0" /> 
+</joint>
 
-    <joint name="junta_junta1" type="fixed">
-        <parent link="elo1" />
-        <child link="junta1" />
-        <origin xyz="-0.08 0 0" /> 
-    </joint>
+<link name="visor">
+    <visual>
+        <origin xyz="0 0 0"/> 
+        <geometry>
+            <box size="0.05 0.05 0.05"/>  
+        </geometry>
+    </visual>
+</link>
 
-    <joint name="junta_visor" type="fixed">
-        <parent link="elo2" />
-        <child link="visor" />
-        <origin xyz="-0.22 0 0.91" /> 
-    </joint>
+<link name="junta1">
+    <visual>
+        <origin xyz="0 0 0"/> 
+        <geometry>
+            <box size="0.05 0.05 0.05"/>  
+        </geometry>
+    </visual>
+</link>
+
+<joint name="junta_junta1" type="fixed">
+    <parent link="elo1" />
+    <child link="junta1" />
+    <origin xyz="-0.08 0 0" /> 
+</joint>
+
+<joint name="junta_visor" type="fixed">
+    <parent link="elo2" />
+    <child link="visor" />
+    <origin xyz="-0.22 0 0.91" /> 
+</joint>
+
 </robot>
